@@ -18,7 +18,7 @@
         
         if ([metric isMemberOfClass:[CKTestCasesMetric class]])
         {
-            testCases = [metric totalNumberOfTestCases];
+            testCases = [metric totalNumberOfMethods];
         }
         else if ([metric isMemberOfClass:[CKMethodsMetric class]])
         {
