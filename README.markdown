@@ -1,10 +1,11 @@
 BeanCounter is a metrics suite for Cappuccino projects. Currently, BeanCounter has support for calculating the following metrics:
-+ Lines of Code
-+ Number of Classes
-+ Number of Files
-+ Number of Methods
-+ Lines of Code Per Class
-+ Methods per Class
+
+* Lines of Code
+* Number of Classes
+* Number of Files
+* Number of Methods
+* Lines of Code Per Class
+* Methods per Class
 
 Contributing
 ============
