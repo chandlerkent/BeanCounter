@@ -2,9 +2,11 @@
 @import "Metrics/CKClassesMetric.j"
 @import "Metrics/CKFilesMetric.j"
 @import "Metrics/CKMethodsMetric.j"
+@import "Metrics/CKTestCasesMetric.j"
 
 @import "CompositeMetrics/CKMethodsPerClassMetric.j"
 @import "CompositeMetrics/CKLOCPerClassMetric.j"
+@import "CompositeMetrics/CKTestCasesPerMethodMetric.j"
 
 var Readline = require("readline").readline;
 var FileList = require("jake").FileList;
@@ -26,19 +28,26 @@ CPLogRegister(CPLogPrint);
         var locMetric = [[CKLOCMetric alloc] initWithName:@"Lines of Code"];
         metrics.push(locMetric);
         
-        var classesMetric = [[CKClassesMetric alloc] initWithName:@"Number of Classes in Project"];
+        var classesMetric = [[CKClassesMetric alloc] initWithName:@"Classes"];
         metrics.push(classesMetric);
         
-        metrics.push([[CKFilesMetric alloc] initWithName:@"Number of Files in Project"]);
+        metrics.push([[CKFilesMetric alloc] initWithName:@"Files"]);
         
-        var methodsMetric = [[CKMethodsMetric alloc] initWithName:@"Number of Methods in Project"];
+        var methodsMetric = [[CKMethodsMetric alloc] initWithName:@"Methods"];
         metrics.push(methodsMetric);
         
+        var testCasesMetric = [[CKTestCasesMetric alloc] initWithName:@"Test Cases"];
+        metrics.push(testCasesMetric);
+        
+        /* Composite Metrics */
         var methodsPerClassMetric = [[CKMethodsPerClassMetric alloc] initWithMetrics:[classesMetric, methodsMetric]];
         metrics.push(methodsPerClassMetric);
         
         var locPerClassMetric = [[CKLOCPerClassMetric alloc] initWithMetrics:[classesMetric, locMetric]];
         metrics.push(locPerClassMetric);
+        
+        var testCasesPerMethodMetric = [[CKTestCasesPerMethodMetric alloc] initWithMetrics:[testCasesMetric, methodsMetric]];
+        metrics.push(testCasesPerMethodMetric);
     }
     
     return self;

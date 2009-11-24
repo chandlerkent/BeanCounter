@@ -17,9 +17,8 @@
 
 - (void)updateMetricForFile:(id)file line:(CPString)line
 {
-    if ([self isNewFile:file])
+    if ([self addFileIfNew:file])
     {
-        files.push(file);
         linesOfCode.push(0);
     }
     
