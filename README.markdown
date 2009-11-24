@@ -4,8 +4,10 @@ BeanCounter is a metrics suite for Cappuccino projects. Currently, BeanCounter h
 * Number of Classes
 * Number of Files
 * Number of Methods
-* Lines of Code Per Class
+* Number of Test Cases
+* Lines of Code per Class
 * Methods per Class
+* Test Cases per Method
 
 Contributing
 ============
@@ -37,3 +39,12 @@ If you have optionally put BeanCounter on your path, you can run BeanCounter.j f
 Dependencies
 ============
 Currently, BeanCounter depends on [Narwhal](http://github.com/tlrobinson/narwhal).
+
+Todo
+====
+There is a lot left to do before BeanCounter is ready for primetime. Here is what is on the list right now:
+
+* "Smarter" code parsing (currently it is line-by-line and naive of where it is in the file/class).
+* Tests to "prove" correctness of metrics.
+* A plug-in type architecture for easier integration of 3rd-party metrics.
+* More metrics (suggestions?).
