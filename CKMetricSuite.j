@@ -1,14 +1,14 @@
-#!/usr/bin/env objj
- 
-@import <Foundation/Foundation.j>
+@import "Metrics/CKLOCMetric.j"
+@import "Metrics/CKClassesMetric.j"
+@import "Metrics/CKFilesMetric.j"
+@import "Metrics/CKMethodsMetric.j"
 
-@import "CKLOCMetric.j"
-@import "CKClassesMetric.j"
-@import "CKFilesMetric.j"
-@import "CKMethodsMetric.j"
+@import "CompositeMetrics/CKMethodsPerClassMetric.j"
+@import "CompositeMetrics/CKLOCPerClassMetric.j"
 
-@import "CKMethodsPerClassMetric.j"
-@import "CKLOCPerClassMetric.j"
+var Readline = require("readline").readline;
+var FileList = require("jake").FileList;
+var File = require("file");
  
 CPLogRegister(CPLogPrint);
  
@@ -90,10 +90,3 @@ CPLogRegister(CPLogPrint);
 }
  
 @end
- 
-var Readline = require("readline").readline;
-var FileList = require("jake").FileList;
-var File = require("file");
-
-var metricSuite = [[CKMetricSuite alloc] init];
-[metricSuite startWithArguments:args];

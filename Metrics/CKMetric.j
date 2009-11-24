@@ -1,4 +1,4 @@
-@import "CKMetricReporter.j"
+@import "../CKMetricReporter.j"
 
 @implementation CKMetric : CKMetricReporter
 {

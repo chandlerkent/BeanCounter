@@ -1,13 +1,16 @@
 @import "CKCompositeMetric.j"
 
-@implementation CKLOCPerClassMetric : CKCompositeMetric
+@import "../Metrics/CKClassesMetric.j"
+@import "../Metrics/CKMethodsMetric.j"
+
+@implementation CKMethodsPerClassMetric : CKCompositeMetric
 {
 }
 
 - (void)reportMetricsForProject
 {
     var classes = 0;
-    var loc = 0;
+    var methods = 0;
     
     for (var i = 0; i < metrics.length; i++)
     {
@@ -17,13 +20,13 @@
         {
             classes = [metric totalNumberOfClasses];
         }
-        else if ([metric isMemberOfClass:[CKLOCMetric class]])
+        else if ([metric isMemberOfClass:[CKMethodsMetric class]])
         {
-            loc = [metric totalNumberOfLines];
+            methods = [metric totalNumberOfMethods];
         }
     }
     
-    print("LOC/Class:\t" + (loc / classes));
+    print("Methods/Class:\t" + (methods / classes));
 }
 
 @end
