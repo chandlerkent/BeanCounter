@@ -1,12 +1,10 @@
-@import "Metrics/CKLOCMetric.j"
-@import "Metrics/CKClassesMetric.j"
-@import "Metrics/CKFilesMetric.j"
-@import "Metrics/CKMethodsMetric.j"
-@import "Metrics/CKTestCasesMetric.j"
+@import "../Models/CKLOCMetric.j"
+@import "../Models/CKClassesMetric.j"
+@import "../Models/CKFilesMetric.j"
+@import "../Models/CKMethodsMetric.j"
+@import "../Models/CKTestCasesMetric.j"
 
-@import "CompositeMetrics/CKMethodsPerClassMetric.j"
-@import "CompositeMetrics/CKLOCPerClassMetric.j"
-@import "CompositeMetrics/CKTestCasesPerMethodMetric.j"
+@import "../Models/CKCompositeMetric.j"
 
 var Readline = require("readline").readline;
 var FileList = require("jake").FileList;
@@ -40,13 +38,13 @@ CPLogRegister(CPLogPrint);
         metrics.push(testCasesMetric);
         
         /* Composite Metrics */
-        var methodsPerClassMetric = [[CKMethodsPerClassMetric alloc] initWithMetrics:[classesMetric, methodsMetric]];
+        var methodsPerClassMetric = [[CKCompositeMetric alloc] initWithName:@"Methods/Class" metrics:[methodsMetric, classesMetric]];
         metrics.push(methodsPerClassMetric);
         
-        var locPerClassMetric = [[CKLOCPerClassMetric alloc] initWithMetrics:[classesMetric, locMetric]];
+        var locPerClassMetric = [[CKCompositeMetric alloc] initWithName:@"LOC/Class" metrics:[locMetric, classesMetric]];
         metrics.push(locPerClassMetric);
         
-        var testCasesPerMethodMetric = [[CKTestCasesPerMethodMetric alloc] initWithMetrics:[testCasesMetric, methodsMetric]];
+        var testCasesPerMethodMetric = [[CKCompositeMetric alloc] initWithName:@"Tests/Method" metrics:[testCasesMetric, methodsMetric]];
         metrics.push(testCasesPerMethodMetric);
     }
     
@@ -72,19 +70,13 @@ CPLogRegister(CPLogPrint);
                 for (var k = 0; k < metrics.length; k++)
                 {
                     var metric = metrics[k];
-                    if ([metric isKindOfClass:[CKMetric class]])
-                    {
-                        [metric updateMetricForFile:file line:line];
-                    }
+                    [metric updateMetricForFile:file line:line];
                 }
             }
             for (var k = 0; k < metrics.length; k++)
             {
                 var metric = metrics[k];
-                if ([metric isKindOfClass:[CKMetric class]])
-                {
-                    [metric reportMetricForFile:file];
-                }
+                print("\t" + [metric metricForFile:file]);
             }
         }   
     }
@@ -93,7 +85,7 @@ CPLogRegister(CPLogPrint);
     for (var k = 0; k < metrics.length; k++)
     {
         var metric = metrics[k];
-        [metric reportMetricsForProject];
+        print([metric name] + ": " + [metric metricForProject]);
     }
     print("\n");
 }

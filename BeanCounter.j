@@ -2,7 +2,7 @@
  
 @import <Foundation/Foundation.j>
 
-@import "CKMetricSuite.j"
+@import "Controllers/CKMetricSuite.j"
 
 var metricSuite = [[CKMetricSuite alloc] init];
 [metricSuite startWithArguments:args];

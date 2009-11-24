@@ -1,6 +1,6 @@
 @import <Foundation/CPObject.j>
 
-@implementation CKMetricReporter : CPObject
+@implementation CKCommandLineView : CPObject
 {
     CPArray files @accessors(readonly);
 }
