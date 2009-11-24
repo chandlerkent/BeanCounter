@@ -17,4 +17,4 @@ If you have optionally put BeanCounter on your path, you can run BeanCounter.j f
 Dependencies
 ============
 
-Currently, BeanCounter depends on "Narwhal":http://github.com/tlrobinson/narwhal.
+Currently, BeanCounter depends on [Narwhal](http://github.com/tlrobinson/narwhal).
