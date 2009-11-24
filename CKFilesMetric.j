@@ -16,11 +16,12 @@
 
 - (void)reportMetricForFile:(id)file
 {
-    print(@"%s: %s", file, classes);
+    return;
 }
 
 - (void)reportMetricsForProject
 {    
     print("Files:\t\t" + files.length);
 }
+
 @end

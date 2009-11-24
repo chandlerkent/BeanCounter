@@ -1,9 +1,8 @@
-@import <Foundation/CPObject.j>
+@import "CKMetricReporter.j"
 
-@implementation CKMetric : CPObject
+@implementation CKMetric : CKMetricReporter
 {
-    CPString name @accessors;
-    CPArray files;
+    CPString    name    @accessors;
 }
 
 - (id)init
@@ -16,7 +15,6 @@
     if (self = [super init])
     {
         name = aName;
-        files = [];
     }
     
     return self;
@@ -32,19 +30,22 @@
     return NO;
 }
 
+- (BOOL)addFileIfNew:(id)file
+{
+    if ([self isNewFile:file])
+    {
+        [self willChangeValueForKey:@"files"];
+        files.push(file);
+        [self didChangeValueForKey:@"files"];
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (void)updateMetricForFile:(id)file line:(CPString)line
 {
     CPLog(@"%@: not yet implemented.", [self className]);
-}
-
-- (void)reportMetricForFile:(id)file
-{
-    CPLog(@"%@: not yet implemented.", [self className]);
-}
-
-- (void)reportMetricsForProject
-{
-    CPLog(@"%s not yet implemented.", _cmd);
 }
 
 @end

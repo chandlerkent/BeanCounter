@@ -35,18 +35,24 @@
 {
     var index = [files indexOfObject:file];
 
-    print(@"%s: %s", file, linesOfCode[index]);
+    print(file + " LOC: " + linesOfCode[index]);
 }
 
 - (void)reportMetricsForProject
-{    
+{
+    print("Lines of Code:\t" + [self totalNumberOfLines]);
+}
+
+- (CPInteger)totalNumberOfLines
+{
     var totalLOC = 0;
+    
     for (var i = 0; i < files.length; i++)
     {
         totalLOC += linesOfCode[i];
     }
     
-    print("Lines of Code:\t" + totalLOC);
+    return totalLOC;  
 }
 
 @end

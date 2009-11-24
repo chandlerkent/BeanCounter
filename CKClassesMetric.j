@@ -2,14 +2,14 @@
 
 @implementation CKClassesMetric : CKMetric
 {
-    CPNumber classes;
+    CPArray classes;
 }
 
 - (id)initWithName:(CPString)aName
 {
     if (self = [super initWithName:aName])
     {
-        classes = 0;
+        classes = [];
     }
     
     return self;
@@ -17,26 +17,41 @@
 
 - (void)updateMetricForFile:(id)file line:(CPString)line
 {
-    if ([self isNewFile:file])
+    if ([self addFileIfNew:file])
     {
-        files.push(file);
+        classes.push(0)
     }
+    
+    var index = classes.length - 1;
     
     // Must begin with @implementation and not be a category
     if (line.indexOf("@implementation") === 0 && line.indexOf(@"(") === -1)
     {
-        classes++;
+        classes[index]++;
     }
 }
 
 - (void)reportMetricForFile:(id)file
 {
-    print(@"%s: %s", file, classes);
+    var index = [files indexOfObject:file];
+    print(file + " classes: " + classes[index]);
+}
+
+- (CPInteger)totalNumberOfClasses
+{
+    var totalClasses = 0;
+    
+    for (var i = 0; i < classes.length; i++)
+    {
+        totalClasses += classes[i];
+    }
+    
+    return totalClasses;
 }
 
 - (void)reportMetricsForProject
 {
-    print("Classes:\t" + classes);
+    print("Classes:\t" + [self totalNumberOfClasses]);
 }
 
 @end
