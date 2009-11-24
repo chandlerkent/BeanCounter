@@ -1,10 +1,10 @@
 BeanCounter is a metrics suite for Cappuccino projects. Currently, BeanCounter has support for calculating the following metrics:
-* Lines of Code
-* Number of Classes
-* Number of Files
-* Number of Methods
-* Lines of Code Per Class
-* Methods per Class
++ Lines of Code
++ Number of Classes
++ Number of Files
++ Number of Methods
++ Lines of Code Per Class
++ Methods per Class
 
 Contributing
 ============
@@ -25,7 +25,7 @@ To have your new metric be run with the rest of the metrics, add an @import stat
 Installation Instructions
 =========================
 Simply clone or download BeanCounter to any directory you wish. If you want to have BeanCounter available quickly from any location, add this to your bash profile:
-    export PATH="/path/to/BeanCounterInstallation:PATH".
+    export PATH="/path/to/BeanCounterInstallation:PATH"
 
 Usage Instructions
 ==================
