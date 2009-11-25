@@ -2,27 +2,35 @@
 
 @implementation CKCommandLineView : CPObject
 {
-    CPArray files @accessors(readonly);
+    CPArray metrics;
 }
 
 - (id)init
 {
+    return [self initWithMetrics:[CPArray array]];
+}
+
+- (id)initWithMetrics:(CPArray)someMetrics
+{
     if (self = [super init])
     {
-        files = [CPArray array];
+        metrics = someMetrics;
     }
     
     return self;
 }
 
-- (void)reportMetricsForFile:(id)file
+- (void)reportMetrics
 {
-    CPLog(@"%s not yet implemented in %s.", _cmd, [self className]);
-}
-
-- (void)reportMetricsForProject
-{
-    CPLog(@"%s not yet implemented in %s.", _cmd, [self className]);
+    print("Name\t\tMetric");
+    
+    for (var i = 0; i < [metrics count]; i++)
+    {
+        var metric = [metrics objectAtIndex:i];
+        var name = [metric name];
+        var tabs = (name.length < 6) ? "\t\t" : "\t";
+        print(name + ":" + tabs + [metric metricForProject]);
+    }
 }
 
 @end

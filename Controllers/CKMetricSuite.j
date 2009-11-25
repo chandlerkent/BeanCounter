@@ -6,6 +6,8 @@
 
 @import "../Models/CKCompositeMetric.j"
 
+@import "../Views/CKCommandLineView.j"
+
 var Readline = require("readline").readline;
 var FileList = require("jake").FileList;
 var File = require("file");
@@ -56,13 +58,12 @@ CPLogRegister(CPLogPrint);
     print("Ignoring arguments...\n");
     
     var files = new FileList("**/*.j").items();
-    
+
     for (var i = 0; i < files.length; i++)
     {
         var file = files[i];
         if (file.indexOf("Frameworks") == -1 && file.indexOf("Build") == -1 && file.indexOf("Resources") == -1)
         {
-            print("\n" + file);
             var lines = File.read(file).split("\n");
             for (var j = 0; j < lines.length; j++)
             {
@@ -73,21 +74,11 @@ CPLogRegister(CPLogPrint);
                     [metric updateMetricForFile:file line:line];
                 }
             }
-            for (var k = 0; k < metrics.length; k++)
-            {
-                var metric = metrics[k];
-                print("\t" + [metric metricForFile:file]);
-            }
-        }   
+        }
     }
-    
-    print("\n\n");
-    for (var k = 0; k < metrics.length; k++)
-    {
-        var metric = metrics[k];
-        print([metric name] + ": " + [metric metricForProject]);
-    }
-    print("\n");
+
+    var commandLineView = [[CKCommandLineView alloc] initWithMetrics:metrics];
+    [commandLineView reportMetrics];
 }
  
 @end
