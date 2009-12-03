@@ -1,0 +1,8 @@
+{
+    "name": "BeanCounter",
+    "author": "Chandler Kent",
+    "dependencies": ["narwhal", "objective-j", "cappuccino"],
+    "description": "Metrics suite for Cappuccino projects.",
+    "keywords": ["objective-j", "cappuccino", "metrics", "beans", "beancounter"],
+    "objj-frameworks": ["Frameworks"]
+}
