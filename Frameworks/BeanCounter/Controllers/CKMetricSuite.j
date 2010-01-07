@@ -48,6 +48,9 @@ CPLogRegister(CPLogPrint);
         
         var testCasesPerMethodMetric = [[CKCompositeMetric alloc] initWithName:@"Tests/Method" metrics:[testCasesMetric, methodsMetric]];
         metrics.push(testCasesPerMethodMetric);
+        
+        var locPerMethodMetric = [[CKCompositeMetric alloc] initWithName:@"LOC/Method" metrics:[locMetric, methodsMetric]];
+        metrics.push(locPerMethodMetric);
     }
     
     return self;
