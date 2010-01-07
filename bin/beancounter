@@ -3,5 +3,7 @@
 @import <Foundation/Foundation.j>
 @import <BeanCounter/Controllers/CKMetricSuite.j>
 
-var metricSuite = [[CKMetricSuite alloc] init];
-[metricSuite startWithArguments:args];
+function main(args) {
+    var metricSuite = [[CKMetricSuite alloc] init];
+    [metricSuite startWithArguments:args];
+}
