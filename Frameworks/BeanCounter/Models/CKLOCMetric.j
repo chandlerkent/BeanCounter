@@ -35,7 +35,6 @@
     }
     else if (line !== nil && line !== "" && line.indexOf("//") !== 0)
     {
-        // Should use KVC
         metric[index]++;
     }
 }

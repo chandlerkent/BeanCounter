@@ -4,10 +4,10 @@
 {
 }
 
-// Must begin with -, +, or function
+// Must begin with - or +
 - (BOOL)isLineAMethod:(CPString)line
 {
-    var methodRegEx = new RegExp("(-|[+]|function).*", "i");
+    var methodRegEx = new RegExp("^\s*(-|[+]).*", "i");
     
     return methodRegEx.test(line);
 }
